@@ -1,4 +1,6 @@
 /* Civic Repair Ledger: this page turns the recovery network into a tactile, readable work order. */
+import { useAuth } from "@/_core/hooks/useAuth";
+import { startLogin } from "@/const";
 import { useState } from "react";
 import { ArrowDown, ArrowRight, Check, MapPin, Menu, X } from "lucide-react";
 
@@ -23,6 +25,8 @@ const initialRequests = [
 ];
 
 export default function Home() {
+  const { isAuthenticated, logout } = useAuth();
+
   const [selectedDevice, setSelectedDevice] = useState("laptop");
   const [currentStage, setCurrentStage] = useState(0);
   const [acceptedRequest, setAcceptedRequest] = useState<number | null>(null);
@@ -77,7 +81,7 @@ export default function Home() {
             <button onClick={() => scrollTo("network")}>For repairers</button>
           </nav>
           <div className="nav-actions">
-            <button className="ghost-button" onClick={() => showToast("Sign-in will be available when your local network opens.")}>Sign in</button>
+            <button className="ghost-button" onClick={() => { if (isAuthenticated) { void logout(); showToast("You’re signed out."); } else { startLogin(); } }}>{isAuthenticated ? "Sign out" : "Sign in"}</button>
             <button className="signal-button" onClick={startPost}>Post e-waste <span className="button-arrow"><ArrowRight size={14} /></span></button>
             <button className="mobile-nav-toggle" onClick={() => setMobileNavOpen(!mobileNavOpen)} aria-label={mobileNavOpen ? "Close menu" : "Open menu"}>
               {mobileNavOpen ? <X size={17} /> : <Menu size={17} />}
