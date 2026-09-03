@@ -369,3 +369,38 @@ a { color: inherit; text-decoration: none; }
   .rail-step-copy small { display: block; }
   .dispatch-body .dispatch-track { display: none; }
 }
+
+/* Full-stack work order controls: structured like a repair intake sheet, with a clear storage state. */
+.post-form { display: flex; flex-direction: column; gap: 0.9rem; }
+.field-label { display: flex; flex-direction: column; gap: 0.38rem; color: var(--forest-2); font-family: "IBM Plex Mono", monospace; font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.field-label > span { display: inline; margin-left: 0.4rem; color: var(--muted-foreground); font-family: "Manrope", sans-serif; font-size: 0.65rem; letter-spacing: 0; text-transform: none; }
+.field-label input, .field-label textarea { width: 100%; border: 1px solid var(--line); border-radius: 0.15rem; background: var(--paper); color: var(--forest); padding: 0.76rem 0.8rem; outline: none; font-family: "Manrope", sans-serif; font-size: 0.76rem; letter-spacing: 0; text-transform: none; transition: border-color 160ms ease, box-shadow 160ms ease; resize: vertical; }
+.field-label input:focus, .field-label textarea:focus { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(231,255,90,0.42); }
+.field-label input::placeholder, .field-label textarea::placeholder { color: #99a09a; }
+.upload-panel { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 0.65rem; align-items: center; padding: 0.85rem; border: 1px dashed rgba(23,53,45,0.34); background: rgba(232,226,214,0.44); }
+.upload-title { display: flex; align-items: center; gap: 0.45rem; color: var(--forest); font-size: 0.73rem; font-weight: 800; }
+.upload-panel p { margin: 0.35rem 0 0; color: var(--muted-foreground); font-size: 0.62rem; line-height: 1.4; }
+.upload-button { padding: 0.62rem 0.75rem; font-size: 0.65rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
+.selected-file { grid-column: 1 / -1; display: flex; align-items: center; gap: 0.62rem; min-width: 0; padding-top: 0.65rem; border-top: 1px solid var(--line); color: var(--forest); font-size: 0.68rem; font-weight: 700; }
+.selected-file img { width: 2rem; height: 2rem; flex: 0 0 auto; object-fit: cover; border: 1px solid var(--line); }
+.selected-file span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.selected-file small { display: block; margin-top: 0.18rem; color: var(--muted-foreground); font-family: "IBM Plex Mono", monospace; font-size: 0.57rem; font-weight: 400; }
+.selected-file > button { margin-left: auto; border: 0; background: transparent; color: var(--muted-foreground); font-size: 1rem; }
+.inline-success { display: flex; align-items: start; gap: 0.45rem; padding: 0.7rem 0.8rem; border-left: 3px solid var(--signal); background: #fbffe5; color: var(--forest); font-size: 0.68rem; line-height: 1.4; font-weight: 700; }
+.signal-button:disabled, .accept-button:disabled { cursor: wait; opacity: 0.72; }
+.spin { animation: spin 900ms linear infinite; }
+.request-status { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--forest); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 700px) {
+  .upload-panel { grid-template-columns: 1fr; }
+  .upload-button { width: fit-content; }
+}
+
+.evidence-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.9rem; padding-top: 0.75rem; border-top: 1px solid var(--line); color: var(--forest); font-size: 0.67rem; font-weight: 800; }
+.evidence-panel > span { display: inline-flex; align-items: center; gap: 0.36rem; margin-right: auto; }
+.evidence-button { padding: 0.5rem 0.68rem; font-size: 0.6rem; }
+.evidence-panel small { width: 100%; color: var(--muted-foreground); font-family: "IBM Plex Mono", monospace; font-size: 0.56rem; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 700px) {
+  .evidence-panel > span { width: 100%; }
+}
